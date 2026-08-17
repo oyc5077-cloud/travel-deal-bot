@@ -7,9 +7,12 @@
 ## 1. 필요한 것 (전부 무료)
 
 1. **GitHub 계정** (이미 있다고 가정)
-2. **Kiwi Tequila API 키** — https://tequila.kiwi.com/portal/login 에서 무료 가입 후 발급
-   (일 호출 한도가 있지만 개인 모니터링 용도로는 충분합니다)
-3. 이 프로젝트를 자신의 GitHub 저장소로 업로드
+2. 이 프로젝트를 자신의 GitHub 저장소로 업로드
+
+> 참고: 처음엔 항공권 조회에 Kiwi Tequila API를 쓰려고 했지만, 2026년 기준
+> Kiwi Tequila와 Amadeus Self-Service 모두 개인 신규 가입이 막혀서
+> **`fast-flights`** 라는 완전 무료 오픈소스 라이브러리로 대체했습니다.
+> 가입도 API 키 발급도 필요 없습니다 (Google Flights 데이터를 가져오는 방식).
 
 ## 2. 설치 순서
 
@@ -25,24 +28,19 @@ git remote add origin https://github.com/<your-id>/travel-deal-bot.git
 git push -u origin main
 ```
 
-### (2) GitHub Secrets에 API 키 등록
-저장소 → Settings → Secrets and variables → Actions → New repository secret
-- Name: `KIWI_API_KEY`
-- Value: 발급받은 Kiwi API 키
-
-### (3) GitHub Pages 활성화
+### (2) GitHub Pages 활성화
 저장소 → Settings → Pages → Source를 `main` 브랜치의 `/docs` 폴더로 지정
 → 저장하면 `https://<your-id>.github.io/travel-deal-bot/` 에서 리포트를 볼 수 있습니다.
 
-### (4) Actions 권한 확인
+### (3) Actions 권한 확인
 저장소 → Settings → Actions → General → Workflow permissions에서
 "Read and write permissions" 선택 (자동 커밋을 위해 필요)
 
-### (5) 모니터링할 노선/호텔 수정
+### (4) 모니터링할 노선/호텔 수정
 `config.yaml` 파일을 열어 원하는 출발지/도착지/날짜, 아고다 검색 URL로 수정하세요.
 아고다 URL은 아고다에서 원하는 지역을 검색한 뒤 주소창의 URL을 그대로 복사하면 됩니다.
 
-### (6) 첫 실행
+### (5) 첫 실행
 저장소 → Actions 탭 → "Travel Deal Scan" → "Run workflow" 버튼으로 수동 실행해서
 정상 작동하는지 확인하세요. 이후엔 매일 자동으로 하루 2회(한국시간 09시, 21시) 실행됩니다.
 
@@ -58,7 +56,6 @@ git push -u origin main
 ```bash
 pip install -r requirements.txt
 playwright install chromium
-export KIWI_API_KEY="발급받은 키"
 python main.py
 ```
 

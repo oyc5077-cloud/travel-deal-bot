@@ -8,7 +8,7 @@ import json
 import yaml
 
 from db import init_db, insert_price
-from collectors.flight_kiwi import fetch_cheapest_flight
+from collectors.flight_google import fetch_cheapest_flight
 from collectors.hotel_agoda import fetch_cheapest_hotel_price
 from report import generate_report
 
