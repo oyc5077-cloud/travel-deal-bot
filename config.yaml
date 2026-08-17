@@ -1,0 +1,35 @@
+# ================================================
+# 모니터링 대상 설정
+# 원하는 노선/호텔을 자유롭게 추가/삭제하세요.
+# ================================================
+
+flights:
+  - name: "부산-방콕"
+    origin: PUS
+    destination: BKK
+    date_from: "2026-11-01"
+    date_to: "2026-12-31"
+    currency: KRW
+
+  - name: "인천-오사카"
+    origin: ICN
+    destination: KIX
+    date_from: "2026-10-01"
+    date_to: "2026-11-30"
+    currency: KRW
+
+hotels:
+  - name: "방콕 5성급 호텔 예시"
+    agoda_url: "https://www.agoda.com/ko-kr/search?city=9395"
+    check_in: "2026-11-10"
+    check_out: "2026-11-13"
+
+  - name: "오사카 시내 호텔 예시"
+    agoda_url: "https://www.agoda.com/ko-kr/search?city=9406"
+    check_in: "2026-10-15"
+    check_out: "2026-10-18"
+
+# 통계 탐지 임계값 (표준편차 배수) - 낮을수록 알림이 더 자주 뜸
+anomaly:
+  z_score_threshold: 2.0
+  min_history_days: 7
