@@ -3,6 +3,7 @@ db에 쌓인 최신 가격 + 특가 판정 결과를 docs/index.html 로 렌더�
 docs/ 를 GitHub Pages 소스로 지정하면, 커밋될 때마다 자동으로
 https://<username>.github.io/<repo>/ 에서 결과를 확인할 수 있다. (완전 무료)
 """
+import os
 from datetime import datetime
 from db import get_all_latest
 from analysis import evaluate_deal
@@ -69,6 +70,7 @@ def generate_report():
         rows="\n".join(rows_html) or "<tr><td colspan='5'>아직 데이터가 없습니다.</td></tr>",
     )
 
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         f.write(html)
 
